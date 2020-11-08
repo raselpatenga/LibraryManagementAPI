@@ -6,21 +6,20 @@ using System.Threading.Tasks;
 
 namespace LibraryManagement.Models
 {
-    public class BookSell
+    public class BookSellReceive
     {
         [Key]
-        public int Id { get; set; }
+        public int SellId { get; set; }
         public int CustomerId { get; set; }
-        public DateTime dtSell { get; set; }
-        public List<BookSellDetails> BookSellDetails { get; set; }
+        public DateTime  dtSell { get; set; }
+        public List<BookSellReceiveDetails> BookSellRecvDetailsList { get; set; }
+
     }
-    public class BookSellDetails
+
+    public class BookSellReceiveDetails
     {
-        public int Id { get; set; }
-        public int BookSellId { get; set; }
         public int BookId { get; set; }
-        public virtual BookSell BookSell { get; set; }
-        public virtual Book Book { get; set; }
+        public int SellId { get; set; }
         public int Qty { get; set; }
         public float Discount { get; set; }
         public float Total { get; set; }

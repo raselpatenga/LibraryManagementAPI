@@ -4,14 +4,16 @@ using LibraryManagement.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace LibraryManagement.Migrations
 {
     [DbContext(typeof(BookContext))]
-    partial class BookContextModelSnapshot : ModelSnapshot
+    [Migration("20201108151840_BookSell_new_add")]
+    partial class BookSell_new_add
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -42,7 +44,7 @@ namespace LibraryManagement.Migrations
 
             modelBuilder.Entity("LibraryManagement.Models.BookSell", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("SellId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
@@ -53,7 +55,7 @@ namespace LibraryManagement.Migrations
                     b.Property<DateTime>("dtSell")
                         .HasColumnType("datetime2");
 
-                    b.HasKey("Id");
+                    b.HasKey("SellId");
 
                     b.ToTable("BookSell");
                 });
@@ -68,7 +70,7 @@ namespace LibraryManagement.Migrations
                     b.Property<int>("BookId")
                         .HasColumnType("int");
 
-                    b.Property<int>("BookSellId")
+                    b.Property<int?>("BookSellSellId")
                         .HasColumnType("int");
 
                     b.Property<float>("Discount")
@@ -86,6 +88,9 @@ namespace LibraryManagement.Migrations
                     b.Property<string>("Remarks")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("SellId")
+                        .HasColumnType("int");
+
                     b.Property<float>("Total")
                         .HasColumnType("real");
 
@@ -93,7 +98,7 @@ namespace LibraryManagement.Migrations
 
                     b.HasIndex("BookId");
 
-                    b.HasIndex("BookSellId");
+                    b.HasIndex("BookSellSellId");
 
                     b.ToTable("BookSellDetails");
                 });
@@ -108,9 +113,7 @@ namespace LibraryManagement.Migrations
 
                     b.HasOne("LibraryManagement.Models.BookSell", "BookSell")
                         .WithMany("BookSellDetails")
-                        .HasForeignKey("BookSellId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("BookSellSellId");
                 });
 #pragma warning restore 612, 618
         }

@@ -29,7 +29,7 @@ namespace LibraryManagement
         {
             services.AddControllers();
             services.AddDbContext<BookContext>(cx => cx.UseSqlServer(Configuration.GetConnectionString("Connection")));
-            services.AddDbContext<BookSellContext>(cx => cx.UseSqlServer(Configuration.GetConnectionString("Connection")));
+           
 
         }
 

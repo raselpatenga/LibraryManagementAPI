@@ -4,14 +4,16 @@ using LibraryManagement.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace LibraryManagement.Migrations
 {
     [DbContext(typeof(BookContext))]
-    partial class BookContextModelSnapshot : ModelSnapshot
+    [Migration("20201108152237_BookSell_update_column")]
+    partial class BookSell_update_column
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -68,7 +70,7 @@ namespace LibraryManagement.Migrations
                     b.Property<int>("BookId")
                         .HasColumnType("int");
 
-                    b.Property<int>("BookSellId")
+                    b.Property<int?>("BookSellId")
                         .HasColumnType("int");
 
                     b.Property<float>("Discount")
@@ -85,6 +87,9 @@ namespace LibraryManagement.Migrations
 
                     b.Property<string>("Remarks")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("SellId")
+                        .HasColumnType("int");
 
                     b.Property<float>("Total")
                         .HasColumnType("real");
@@ -108,9 +113,7 @@ namespace LibraryManagement.Migrations
 
                     b.HasOne("LibraryManagement.Models.BookSell", "BookSell")
                         .WithMany("BookSellDetails")
-                        .HasForeignKey("BookSellId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("BookSellId");
                 });
 #pragma warning restore 612, 618
         }

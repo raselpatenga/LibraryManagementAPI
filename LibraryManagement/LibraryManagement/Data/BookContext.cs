@@ -10,6 +10,8 @@ namespace LibraryManagement.Data
     public class BookContext:DbContext
     {
         public DbSet<Book> tblBook { get; set; }
+        public DbSet<BookSell> BookSell { get; set; }
+        public DbSet<BookSellDetails> BookSellDetails { get; set; }
 
         public BookContext(DbContextOptions options) : base(options)
         {
